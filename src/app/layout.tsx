@@ -11,6 +11,9 @@ const alexBrush = Alex_Brush({
 export const metadata: Metadata = {
   title: "Will You Be My Valentine? 💝",
   description: "A special invitation for Mani",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
