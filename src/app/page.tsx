@@ -1,65 +1,143 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <Link href="/game" className="block">
+      <div className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#f4e6d6]">
+        {/* Paper texture background */}
+        <div className="absolute inset-0 opacity-[0.27] pointer-events-none">
+          <Image
+            src="/paper-texture.png"
+            alt=""
+            fill
+            className="object-cover"
+            style={{
+              transform: "scale(1.8)",
+              transformOrigin: "center center",
+            }}
+            priority
+          />
+        </div>
+
+        {/* Cherub illustration - centered */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "clamp(400px, 55vw, 900px)",
+            aspectRatio: "1031 / 902",
+          }}
+        >
+          <Image
+            src="/cherub.svg"
+            alt="Cherub"
+            fill
+            className="object-contain opacity-90"
+            priority
+          />
+        </div>
+
+        {/* Main text - "Will you be my Valentine?" - LEFT positioned with rotation */}
+        <div
+          className="absolute"
+          style={{
+            left: "clamp(20px, 5vw, 100px)",
+            top: "50%",
+            transform: "translateY(-50%) rotate(-16deg)",
+            transformOrigin: "left center",
+          }}
+        >
+          <h1
+            className="font-[var(--font-alex-brush)] text-[#b63338] leading-[0.9] whitespace-nowrap"
+            style={{
+              textShadow: "0px 4px 6px rgba(123, 30, 28, 0.25)",
+            }}
+          >
+            <span
+              className="block"
+              style={{ fontSize: "clamp(60px, 12vw, 200px)" }}
+            >
+              Will you
+            </span>
+            <span
+              className="block"
+              style={{
+                fontSize: "clamp(50px, 10vw, 170px)",
+                marginLeft: "clamp(30px, 5vw, 80px)",
+              }}
+            >
+              be my
+            </span>
+            <span
+              className="block"
+              style={{ fontSize: "clamp(60px, 12vw, 200px)" }}
+            >
+              Valentine?
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+        </div>
+
+        {/* Torn paper note - bottom right */}
+        <div
+          className="absolute"
+          style={{
+            right: "clamp(10px, 3vw, 60px)",
+            bottom: "clamp(10px, 5vh, 80px)",
+            transform: "rotate(-21deg)",
+            width: "clamp(120px, 20vw, 300px)",
+            height: "clamp(120px, 22vw, 320px)",
+          }}
+        >
+          <Image
+            src="/torn-paper.png"
+            alt=""
+            fill
+            className="object-contain"
+            priority
+          />
+          {/* From/To text on torn paper */}
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              transform: "rotate(2deg)",
+            }}
+          >
+            <p
+              className="font-[var(--font-alex-brush)] text-[#b63338] text-center leading-relaxed"
+              style={{
+                fontSize: "clamp(16px, 3vw, 42px)",
+                textShadow: "0px 2px 4px rgba(123, 30, 28, 0.2)",
+              }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              from:
+              <br />
+              dhruv
+              <br />
+              to:
+              <br />
+              mani
+            </p>
+          </div>
+        </div>
+
+        {/* Click indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-60 animate-pulse">
+          <p
+            className="font-[var(--font-alex-brush)] text-[#b63338]"
+            style={{ 
+              fontSize: "clamp(32px, 5vw, 54px)",
+              textShadow: "0px 4px 6px rgba(123, 30, 28, 0.25)" 
+            }}
+          >
+            click anywhere to continue...
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </Link>
   );
 }
